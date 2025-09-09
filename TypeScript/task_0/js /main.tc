@@ -1,0 +1,70 @@
+// Define the Student interface
+interface Student {
+  firstName: string;
+  lastName: string;
+  age: number;
+  location: string;
+}
+
+// Create student variables
+const student1: Student = {
+  firstName: "Ali",
+  lastName: "Al-Fahad",
+  age: 21,
+  location: "Riyadh"
+};
+
+const student2: Student = {
+  firstName: "Sara",
+  lastName: "Al-Mutairi",
+  age: 23,
+  location: "Jeddah"
+};
+
+// Create studentsList array
+const studentsList: Student[] = [student1, student2];
+
+// Function to render the table
+function renderStudentsTable(): void {
+  const table: HTMLTableElement = document.createElement('table');
+  table.style.border = '1px solid black';
+  table.style.borderCollapse = 'collapse';
+  table.style.width = '100%';
+  
+  // Table header
+  const headerRow: HTMLTableRowElement = table.insertRow();
+  headerRow.style.backgroundColor = '#f2f2f2';
+  headerRow.style.fontWeight = 'bold';
+  
+  const firstNameHeader: HTMLTableCellElement = headerRow.insertCell();
+  firstNameHeader.textContent = 'First Name';
+  firstNameHeader.style.border = '1px solid black';
+  firstNameHeader.style.padding = '8px';
+  
+  const locationHeader: HTMLTableCellElement = headerRow.insertCell();
+  locationHeader.textContent = 'Location';
+  locationHeader.style.border = '1px solid black';
+  locationHeader.style.padding = '8px';
+  
+  // Table rows
+  studentsList.forEach((student: Student) => {
+    const row: HTMLTableRowElement = table.insertRow();
+    
+    const firstNameCell: HTMLTableCellElement = row.insertCell();
+    firstNameCell.textContent = student.firstName;
+    firstNameCell.style.border = '1px solid black';
+    firstNameCell.style.padding = '8px';
+    
+    const locationCell: HTMLTableCellElement = row.insertCell();
+    locationCell.textContent = student.location;
+    locationCell.style.border = '1px solid black';
+    locationCell.style.padding = '8px';
+  });
+  
+  document.body.appendChild(table);
+}
+
+// Render table after DOM loads
+document.addEventListener('DOMContentLoaded', () => {
+  renderStudentsTable();
+});
